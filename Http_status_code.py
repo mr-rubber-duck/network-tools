@@ -1,11 +1,11 @@
+# http_status_checker.py
+
 Http_status_table = {
-    ##1xx: Informational
     100: "Switching Protocols",
     102: "Processing",
     103: "Early Hints",
     104: "Connection Established",
     122: "Request-URI too long",
-    ##2xx: Success
     200: "OK",
     201: "Created",
     202: "Accepted",
@@ -16,7 +16,6 @@ Http_status_table = {
     207: "Multi-Status",
     208: "Already Reported",
     226: "IM Used",
-    ##3xx: Redirection
     300: "Multiple Choices",
     301: "Moved Permanently",
     302: "Found",
@@ -26,7 +25,6 @@ Http_status_table = {
     306: "Switch Proxy",
     307: "Temporary Redirect",
     308: "Permanent Redirect",
-    ##4xx: Client error
     400: "Bad Request",
     401: "Unauthorized",
     402: "Payment Required",
@@ -55,7 +53,6 @@ Http_status_table = {
     428: "Precondition Required",
     429: "Too Many Requests",
     451: "Unavailable For Legal Reasons",
-    ##5xx: Server error
     500: "Internal Server Error",
     501: "Not Implemented",
     502: "Bad Gateway",
@@ -69,8 +66,13 @@ Http_status_table = {
     511: "Network Authentication Required"
 }
 
-userinput=int(input("Enter the Http status code:\n"))
-if userinput in Http_status_table:
-    print(f"{userinput}:{Http_status_table[userinput]}")
-else:
-    print(f"{userinput}:invalid status code")
+def check_status():
+    user_input = input("Enter an HTTP status code: ")
+    if user_input.isdigit():
+        code = int(user_input)
+        print(f"{code}: {Http_status_table.get(code, 'Unknown HTTP status code.')}")
+    else:
+        print("Invalid input. Please enter a numeric HTTP status code.")
+
+if __name__ == "__main__":
+    check_status()
